@@ -6,7 +6,7 @@ export default function SearchHeader(props) {
 
     const [searchInput, setSearchInput] = useState('')
 
-    function handleChange(event) {
+    const handleChange = (event) => {
         setSearchInput(event.target.value)
     }
 

@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import { FavoriteBorder, Favorite } from '@mui/icons-material'
 
 export default function Image({imageData}) {
-    
-    const image = imageData.cover_photo.urls.small
-    console.log(image)
 
+    const image = imageData.cover_photo.urls.small
     const [isFavorite, setIsFavorite] = useState(false)
 
     const toggleFavorite = (e) => {
         setIsFavorite(prev => !prev)
-        // pass image prop to backend
-        
+        sendToApi(image)
+    }
+
+    // Send un/favorited url to backend
+    // So we can save or delete from user's library
+    const sendToApi = () => {
+        console.log(image)
     }
 
     return (
