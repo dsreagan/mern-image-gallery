@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-    background: linear-gradient(to bottom right, #003049, black);
+    background: linear-gradient(to bottom right, #003049 65%, black);
     display: grid;
     grid-template-columns: 4fr 1fr;
     height: 100px;
@@ -53,14 +53,41 @@ body {
     margin: 8px;    
 }
 
-.image-flex {
+.image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
+    position: relative;
+}
+
+.image-container:hover {
+    transform: scale(1.02);
+    transition: all 0.5s ease;
+}
+
+.favorites-container {
+    opacity: 0;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.2);
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+}
+
+.favorites-container:hover {
+    opacity: 1;
 }
 
 .image {
     width: 100%;
+    z-index: 2;
+}
+
+.image:hover {
+    z-index: 1;
 }
 

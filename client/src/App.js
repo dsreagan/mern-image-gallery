@@ -11,7 +11,7 @@ export default function App() {
       <SearchHeader setImages={(images) => setImages(images)} />
       <div className="image-grid">
         {images.length > 0 && images.map((image) => (
-          <Image key={image.id} image={image} />))
+          <Image key={image.id} imageData={image} />))
         }
       </div>
     </div>

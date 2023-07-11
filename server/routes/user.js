@@ -3,7 +3,7 @@ const Library = require('../models/Library');
 const router = require('express').Router();
 const { verifyToken } = require('./verifyToken')
 
-// Store image in user's library
+// Add image to user's library
 router.put('/save/:id', verifyToken, async (req, res) => {
     const newImage = req.body.image
     try {
@@ -18,8 +18,12 @@ router.put('/save/:id', verifyToken, async (req, res) => {
     } catch (err) {
         res.status(500).json(err)
     }
-
 })
+
+// Delete image from user's library'
+// router.delete('/delete/:id', verifyToken, async (req, res) => {
+
+// })
 
 // Access user's library
 router.get('/library/:id', async (req, res) => {

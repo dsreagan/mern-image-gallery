@@ -15,7 +15,6 @@ export default function SearchHeader(props) {
           &query=${searchInput}
           &client_id=${process.env.REACT_APP_ACCESS_KEY}`)
         const data = await response.data.results
-        console.log(data)
         props.setImages(data)
     }
 
