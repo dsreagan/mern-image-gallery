@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-    background: linear-gradient(to bottom right, #003049 65%, black);
+    background-color: #343A40;
     display: grid;
     grid-template-columns: 4fr 1fr;
     height: 100px;
@@ -27,15 +27,15 @@ body {
 
 .search-div > button {
     height: 28px;
-    background-color: #f77f00;
+    background-color: #4361ee;
     color: #F5F5F5;
     cursor: pointer;
 }
 
 .search-div > button:hover {
     background-color: #F5F5F5;
-    color: #f77f00;
-    border: 2px solid #f77f00;
+    color: #4361ee;
+    border: 2px solid #4361ee;
 }
 
 .library-div {
