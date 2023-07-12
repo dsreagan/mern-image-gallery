@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { PhotoLibrary, Search } from '@mui/icons-material'
+import fetchImages from '../utils/fetchImages'
 
 
 export default function SearchHeader(props) {
@@ -11,12 +11,9 @@ export default function SearchHeader(props) {
         setSearchInput(event.target.value)
     }
 
-    const fetchImages = async () => {
-        const response = await axios.get(`https://api.unsplash.com/search/collections?page=1
-          &query=${searchInput}
-          &client_id=${process.env.REACT_APP_ACCESS_KEY}`)
-        const data = await response.data.results
-        props.setImages(data)
+    const handleSearch = async () => {
+        const imageData = await fetchImages(searchInput)
+        props.setImages(imageData)
     }
 
     return (
@@ -30,7 +27,8 @@ export default function SearchHeader(props) {
                 />
                 <button
                     disabled={!searchInput}
-                    onClick={fetchImages}
+                    // onClick={fetchImages}
+                    onClick={handleSearch}
                 >
                   <Search />
                 </button>
