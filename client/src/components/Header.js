@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PhotoLibrary, Search } from '@mui/icons-material'
+import { PhotoLibrary, Search, Person } from '@mui/icons-material'
 import fetchImages from '../utils/fetchImages'
 
 
@@ -27,15 +27,22 @@ export default function SearchHeader(props) {
                 />
                 <button
                     disabled={!searchInput}
-                    // onClick={fetchImages}
                     onClick={handleSearch}
                 >
                   <Search />
                 </button>
             </div>
-            <div className="library-div">
-                <PhotoLibrary style={{ color: "#F5F5F5", fontSize:50 }} />
-            </div>
+            {props.loggedIn ? 
+                <div className="library-div">
+                    <PhotoLibrary style={{ color: "#F5F5F5", fontSize:50 }} />
+                </div> 
+                :
+                <div className="library-div">
+                    <Person style={{ color: "#F5F5F5", fontSize:50 }} />
+                    <p>Sign Up / Log In</p>
+                </div> 
+            }
+            
         </div>
     )
 }

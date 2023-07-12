@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FavoriteBorder, Favorite } from '@mui/icons-material'
 
-export default function Image({imageData}) {
+export default function Image({ imageData }) {
 
     const image = imageData.cover_photo.urls.small
     const [isFavorite, setIsFavorite] = useState(false)

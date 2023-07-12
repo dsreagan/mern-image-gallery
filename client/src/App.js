@@ -1,29 +1,22 @@
 import React, { useState } from 'react'
-import SearchHeader from './components/SearchHeader'
-import Image from './components/Image'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Header from './components/Header'
 
 export default function App() {
 
+  const [loggedIn, setLoggedIn] = useState(false)
   const [images, setImages] = useState([])
 
   return (
-
-    // <Route>
-    //   <Switch>
-    //     <Route>
-        
-    //     </Route>
-    //   </Switch>
-    // </Route>
-
     <div className="App">
-      <SearchHeader setImages={(images) => setImages(images)} />
-      <div className="image-grid">
-        {images.length > 0 && images.map((image) => (
-          <Image key={image.id} imageData={image} />))
-        }
-      </div>
+      <Header 
+          setImages={(imageData) => setImages(imageData)} 
+          loggedIn={loggedIn}
+        />
+      <Routes>
+        <Route path="/" element={<Home images={images} />} />
+      </Routes>
     </div>
   )
 }
