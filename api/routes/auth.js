@@ -1,29 +1,23 @@
 const router = require('express').Router()
 const User = require('../models/User')
-const Library = require('../models/Library')
 const CryptoJS = require('crypto-js')
 const jwt = require('jsonwebtoken')
 
 // Register new user
 router.post('/register', async (req, res) => {
+    // Create a new user
     const newUser = new User({
         username: req.body.username,
         password: CryptoJS.AES.encrypt(
             req.body.password, 
             process.env.PASSWORD_KEY
-        ).toString()
+        ).toString(),
+        images: []
     })
 
     try {
-        // Create a new user
+        // Save new user
         const savedUser = await newUser.save()
-        // Create a library for that user
-        const newLibrary = new Library({
-            username: savedUser.username,
-            images: []
-        })
-
-        const savedLibrary = await newLibrary.save()
         res.status(201).json(savedUser)
     } catch (err) {
         res.status(500).json(err)

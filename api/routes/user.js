@@ -1,37 +1,43 @@
 const User = require('../models/User');
-const Library = require('../models/Library');
 const router = require('express').Router();
 const { verifyToken } = require('./verifyToken')
 
 // Add image to user's library
 router.put('/save/:id', verifyToken, async (req, res) => {
-    const newImage = req.body.image
+    const saveImage = req.body.image
     try {
-        const user = await User.findById(req.params.id)
-        const userLibrary = await Library.findOneAndUpdate(
-            { username: user.username },
+        const user = await User.findByIdAndUpdate(req.params.id,
             {
-                $push: { images: newImage }
+                $push: { images: saveImage }
             }
         )
-        res.status(200).json(userLibrary.images)
+        res.status(200).json(user.images)
     } catch (err) {
         res.status(500).json(err)
     }
 })
 
-// Delete image from user's library'
-// router.delete('/delete/:id', verifyToken, async (req, res) => {
-
-// })
+// Unlike an image in the search page
+router.delete('/delete/:id', verifyToken, async (req, res) => {
+    const deleteImage = req.body.image
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id,
+            {
+                $pull: { images: deleteImage }
+            }
+        )
+        res.status(200).json(user.images)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 // Access user's library
-router.get('/library/:id', async (req, res) => {
+router.get('/library/:id', verifyToken, async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
-        const userLibrary = await Library.findOne({ username: user.username })
-        const savedImages = userLibrary.images
-        res.status(200).json(savedImages)
+        const userLibrary = user.images
+        res.status(200).json(userLibrary)
     } catch (err) {
         res.status(500).json(err)
     }
