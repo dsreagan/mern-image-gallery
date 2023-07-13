@@ -3,10 +3,10 @@ import axios from 'axios'
 const registerUser = async (username, password) => {
     try {
         const res = await axios.post('http://localhost:3000/auth/register',
-        {
-            username: username,
-            password: password
-        }
+            {
+                username: username,
+                password: password
+            }
         )
         console.log(res.data)
     } catch (err) {
@@ -31,18 +31,57 @@ const loginUser = async (username, password) => {
     }
 }
 
-const getUserLibrary = async () => {
+const saveImage = async (userId, accessToken, imageUrl) => {
     try {
-      const res = await axios.get('http://localhost:3000/user/library/64b02ea68fa518fb2c7a3592',
-      {
-        headers: {
-          token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjAyZWE2OGZhNTE4ZmIyYzdhMzU5MiIsImlhdCI6MTY4OTI2OTc1NywiZXhwIjoxNjg5NTI4OTU3fQ.Au9zIS45jMB-3cM5rdQBHaHaM4GoD19JgVoyD1QbVaI'
-        }
-      })
-      console.log(res.data)
+        const res = await axios.put(`http://localhost:3000/user/save/${userId}`, 
+            {
+                image: imageUrl
+            },
+            {
+                headers: {
+                    token: `Bearer ${accessToken}`
+                }
+            }
+        )
+        return res.data
     } catch (err) {
       console.log(err)
     }
 }
 
-export { registerUser, getUserLibrary, loginUser }
+const deleteImage = async (userId, accessToken, imageUrl) => {
+    console.log(accessToken)
+    try {
+        const res = await axios.put(`http://localhost:3000/user/delete/${userId}`, 
+            {
+                image: imageUrl
+            },
+            {
+                headers: {
+                    token: `Bearer ${accessToken}`
+                }
+            }
+        )
+        return res.data
+    } catch (err) {
+      console.log(err)
+    }
+}
+
+// Get Liked Images
+const getUserLibrary = async (userId, accessToken) => {
+    try {
+        const res = await axios.get(`http://localhost:3000/user/library/${userId}`,
+            {
+                headers: {
+                    token: `Bearer ${accessToken}`
+                }
+            }
+        )
+        return res.data
+    } catch (err) {
+      console.log(err)
+    }
+}
+
+export { registerUser, loginUser, saveImage, deleteImage, getUserLibrary }

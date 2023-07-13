@@ -18,7 +18,7 @@ router.put('/save/:id', verifyToken, async (req, res) => {
 })
 
 // Unlike an image in the search page
-router.delete('/delete/:id', verifyToken, async (req, res) => {
+router.put('/delete/:id', verifyToken, async (req, res) => {
     const deleteImage = req.body.image
     try {
         const user = await User.findByIdAndUpdate(req.params.id,
