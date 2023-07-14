@@ -32,17 +32,17 @@ export default function SearchHeader(props) {
                   <Search />
                 </button>
             </div>
-            {props.loggedIn ? 
-                <div className="library-div">
-                    <PhotoLibrary style={{ color: "#F5F5F5", fontSize:50 }} />
-                </div> 
-                :
-                <div className="library-div">
-                    <Person style={{ color: "#F5F5F5", fontSize:50 }} />
-                    <p>Sign Up / Log In</p>
-                </div> 
-            }
-            
+                <div className="icon-div">
+                {props.isLoggedIn ? 
+                    <div className="icon">
+                        <PhotoLibrary style={{ color: "white", fontSize:40 }} />
+                    </div>
+                    :
+                    <div className="icon">
+                        <Person style={{ color: "white", fontSize:40 }} />
+                    </div>
+                } 
+                </div>
         </div>
     )
 }

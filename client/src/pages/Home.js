@@ -1,10 +1,20 @@
+import { useState } from 'react'
+import Header from '../components/Header'
 import Images from '../components/Images'
 
-export default function Home({ images }) {
+export default function Home ({ isLoggedIn }) {
 
-  return (
-    <div>
-      <Images images={images}/>
-    </div>
-  )
+  const [images, setImages] = useState([])
+
+    return (
+        <div>
+            <Header 
+                setImages={(imageData) => setImages(imageData)} 
+                isLoggedIn={isLoggedIn}
+            />
+            <Images 
+                images={images}
+            />
+        </div>
+    )
 }

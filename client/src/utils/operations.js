@@ -14,7 +14,7 @@ const registerUser = async (username, password) => {
     }
 }
 
-const loginUser = async (username, password) => {
+const logInUser = async (username, password) => {
     try {
         const res = await axios.post('http://localhost:3000/auth/login',
             {
@@ -84,4 +84,4 @@ const getUserLibrary = async (userId, accessToken) => {
     }
 }
 
-export { registerUser, loginUser, saveImage, deleteImage, getUserLibrary }
+export { registerUser, logInUser, saveImage, deleteImage, getUserLibrary }
