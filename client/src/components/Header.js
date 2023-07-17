@@ -22,12 +22,11 @@ export default function Header(props) {
         })
         props.setImages(images)
     }
-    
-    
-    // handle error if it can't load saved images, the user might not have any
+    // You haven't liked any images yet, search for images and click them to like them and save them in this folder.
+    // pop up window with above statement or somehow print this in the body/ so a library page now makes sense again
     const loadLikedImages = async () => {
-    const images = await getSavedImages()
-    props.setImages(images)
+        const images = await getSavedImages()
+        images && props.setImages(images)
     }
 
     return (
@@ -50,15 +49,16 @@ export default function Header(props) {
             </div>
             <div className="icon-div">
                 {props.isLoggedIn ? 
-                    <div className="icon">
+                    <div className="icon" onClick={loadLikedImages}>
                         <PhotoLibrary 
                             style={{ color: "white", fontSize:40 }} 
-                            onClick={loadLikedImages}
                         />
                     </div>
                     :
-                    <div className="icon">
-                        <Person style={{ color: "white", fontSize:40 }} />
+                    <div className="icon" onClick={() => props.setModalIsOpen(true)}>
+                        <Person 
+                            style={{ color: "white", fontSize:40 }} 
+                        />
                     </div>
                 }
            </div>

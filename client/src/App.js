@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Images from './components/Images'
+import Modal from './components/Modal'
 import axios from 'axios'
 import { 
   registerUser, 
@@ -13,8 +14,9 @@ import {
 
 export default function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [images, setImages] = useState([])
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const logIn = async () => {
     try {
@@ -26,17 +28,28 @@ export default function App() {
       setIsLoggedIn(false)
     }
   }
+  // useEffect(() => {
+  //   const procedure = async () => {
+  //     logIn()
+  //   }
+  //   procedure()
+  // })
 
   return (
     <div className="App">
       <Header
         isLoggedIn={isLoggedIn}
         setImages={setImages}
+        setModalIsOpen={setModalIsOpen}
       />
       <Images 
         images={images}
       />
-
+      {modalIsOpen && 
+        <Modal 
+        setModalIsOpen={setModalIsOpen}
+        />
+      }
     </div>
   )
 }

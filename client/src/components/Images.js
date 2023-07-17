@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Image from '../components/Image'
+import { saveImage, deleteImage } from '../utils/operations'
 
 export default function Images ({ images }) {
 
@@ -12,12 +13,13 @@ export default function Images ({ images }) {
     const likeUnlikeImage = async () => {
       try {
         if (saveImage) {
-            // await saveImage(targetImage)
-            console.log(`liked ${targetImage}`)
-            
+          console.log(`liked ${targetImage}`)
+          // save image take 3 arguments
+          // await saveImage(targetImage)
         } else {
-            // await deleteImage(targetImage)
-            console.log(`unliked ${targetImage}`)
+          // delete image take 3 arguments
+          // await deleteImage("testing123")
+          console.log(`unliked ${targetImage}`)
         }
         setTargetImage('')
       } catch (err) {
@@ -26,7 +28,7 @@ export default function Images ({ images }) {
     }
     targetImage.length > 0 && likeUnlikeImage()
 
-  }, [targetImage])
+  }, [targetImage, saveImage])
 
     return (
         <div  className="image-grid">

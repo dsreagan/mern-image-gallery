@@ -15,8 +15,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* gap: 2px;
-    flex-wrap: wrap; */
 }
 
 .search-bar-wrapper {
@@ -36,7 +34,7 @@ body {
     width: 250px;
 }
 
-.search-bar-wrapper > input:focus {
+input:focus {
     outline: none;
 }
 
@@ -105,6 +103,98 @@ body {
 .image {
     width: 100%;
     z-index: 2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 400px;
+    height: 300px;
+    background: #f1f1f1;
+    padding: 0;
+    border-radius: 8px;
+}
+
+.modal-top {
+    display: flex;
+    position: relative;
+}
+
+.modal-tabs {
+    display: flex;
+    margin-top: 0;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 8px;
+    background-color: darkgrey;
+    border-radius: 0 8px;
+}
+
+.tab {
+    padding: 15px 35px;
+    text-align: center;
+    background: rgba(128, 128, 128, 0.075);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.tab:not(:last-child){
+    border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tab {
+    background: white;
+    border-bottom: 1px solid transparent;
+}
+
+.modal-content {
+    flex-grow : 1;
+}
+
+.content {
+    display: none;
+    background: white;
+    padding: 20px;
+    height: 100%;
+    border-radius: 0 0 8px 8px;
+}
+
+.active-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.active-content > input, .active-content > button {
+    height: 20px;
+    width: 50%;
+    border-radius: 8px;
+    border: 1px solid darkgrey; 
 }
 
 
