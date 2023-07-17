@@ -69,7 +69,7 @@ const deleteImage = async (userId, accessToken, imageUrl) => {
 }
 
 // Get Liked Images
-const getUserLibrary = async (userId, accessToken) => {
+const getSavedImages = async (userId, accessToken) => {
     try {
         const res = await axios.get(`http://localhost:3000/user/library/${userId}`,
             {
@@ -84,4 +84,4 @@ const getUserLibrary = async (userId, accessToken) => {
     }
 }
 
-export { registerUser, logInUser, saveImage, deleteImage, getUserLibrary }
+export { registerUser, logInUser, saveImage, deleteImage, getSavedImages }

@@ -15,27 +15,41 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2px;
-    flex-wrap: wrap;
+    /* gap: 2px;
+    flex-wrap: wrap; */
 }
 
-.search-div > input, button{
-    height: 24px;
-    font-size: 16px;
+.search-bar-wrapper {
+    background-color: lightgrey;
+    display: flex;
     border-radius: 8px;
 }
 
-.search-div > button {
-    height: 28px;
-    background-color: #4361ee;
-    color: #F5F5F5;
-    cursor: pointer;
+.search-bar-wrapper > input, button{
+    height: 25px;
+    font-size: 16px;
+    border: none;
 }
 
-.search-div > button:hover {
-    background-color: #F5F5F5;
-    color: #4361ee;
-    border: 2px solid #4361ee;
+.search-bar-wrapper > input {
+    border-radius: 8px 0px 0px 8px;
+    width: 250px;
+}
+
+.search-bar-wrapper > input:focus {
+    outline: none;
+}
+
+.search-bar-wrapper > button {
+    height: 27px;
+    color: white;
+    cursor: pointer;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.search-bar-wrapper > button:hover {
+    background-color: white;
+    color: lightgrey;
 }
 
 .icon-div {
@@ -93,7 +107,4 @@ body {
     z-index: 2;
 }
 
-.image:hover {
-    z-index: 1;
-}
 

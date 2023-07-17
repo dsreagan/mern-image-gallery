@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Image from '../components/Image'
-import { saveImage, deleteImage } from '../utils/operations'
 
 export default function Images ({ images }) {
 
@@ -33,8 +32,8 @@ export default function Images ({ images }) {
         <div  className="image-grid">
             {images.length > 0 && images.map((image) => (
                 <Image 
-                    key={image.id} 
-                    imageData={image} 
+                    key={image.id}
+                    image={image.url} 
                     setTargetImage={setTargetImage}
                     setSaveImage={setSaveImage}
                 />

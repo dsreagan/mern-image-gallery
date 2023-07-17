@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Images from './components/Images'
-import Home from './pages/Home'
-import Library from './pages/Library'
 import axios from 'axios'
 import { 
   registerUser, 
-  getUserLibrary,
+  getSavedImages,
   logInUser, 
   saveImage, 
   deleteImage 
@@ -15,7 +13,8 @@ import {
 
 export default function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [images, setImages] = useState([])
 
   const logIn = async () => {
     try {
@@ -30,22 +29,14 @@ export default function App() {
 
   return (
     <div className="App">
-      
-      <Routes>
-        <Route 
-          path="/" 
-          element={
-            <Home 
-              isLoggedIn={isLoggedIn}
-            />
-          } 
-        />
-        <Route 
-          path="/library" 
-          element={<Library />}
-        />
-      </Routes>
-      
+      <Header
+        isLoggedIn={isLoggedIn}
+        setImages={setImages}
+      />
+      <Images 
+        images={images}
+      />
+
     </div>
   )
 }
