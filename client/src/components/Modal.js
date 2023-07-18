@@ -1,11 +1,48 @@
 import { useState } from 'react'
+import { logInUser, registerUser } from '../utils/operations'
 
 export default function Modal(props) {
 
     const [tab, setTab] = useState(1)
+    const [formData, setFormData] = useState({username: '', password1: '', password2: ''})
+
+    const handleChange = (event) => {
+        setFormData(prevData => {
+            return {
+                ...prevData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
 
     const changeTab = (index) => {
         setTab(index)
+    }
+
+    // Here 
+    // deal with login success and failure
+    const handleLogIn = (e) => {
+        e.preventDefault()
+        const {userId, userName, accessToken} = logInUser(
+            formData.username, formData.password1
+        )
+        props.setUserInfo(userId, userName, accessToken)
+    }
+
+    const handleRegistration = (e) => {
+        e.preventDefault()
+        // register
+        formData.password1 === formData.password2 && 
+            registerUser(formData.username, formData.password1)
+        // log in
+        // this doesn't work
+        handleLogIn()
+        // this doesn't even work
+        const {userId, userName, accessToken} = logInUser(
+            formData.username, formData.password1
+        )
+        props.setUserInfo(userId, userName, accessToken)
+        // maybe just reset the form and get them to log in
     }
 
   return (
@@ -29,30 +66,63 @@ export default function Modal(props) {
                 >X</button>
             </div>
             <div className="modal-content">
-                <div 
-                className={tab === 1 ? 
-                    "content active-content" : 
-                    "content"
-                }>
-                    <input type="text" placeholder="email" />
-                    <input type="text" placeholder="password" />
+                <form 
+                    className={tab === 1 ? 
+                        "content active-content" : 
+                        "content"
+                    }
+                    onSubmit={handleLogIn}
+                >
+                    <input 
+                        type="text" 
+                        placeholder="username" 
+                        onChange={handleChange}
+                        value={formData.username}
+                        name="username"
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="password"
+                        onChange={handleChange}
+                        value={formData.email}
+                        name="password1"
+                    />
                     <button 
                         type="submit"
                     >Log In</button>
-                </div>
-                
-                <div 
-                className={tab === 2 ? 
-                    "content active-content" : 
-                    "content"
-                }>
-                    <input type="text" placeholder="username" />
-                    <input type="text" placeholder="password" />
-                    <input type="text" placeholder="re-enter password" />
+                </form>
+                <form 
+                    className={tab === 2 ? 
+                        "content active-content" : 
+                        "content"
+                    }
+                    onSubmit={handleRegistration}
+                >
+                    <input 
+                        type="text" 
+                        placeholder="username" 
+                        onChange={handleChange}
+                        value={formData.username}
+                        name="username"
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="password" 
+                        onChange={handleChange}
+                        value={formData.password1}
+                        name="password1"
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="re-enter password" 
+                        onChange={handleChange}
+                        value={formData.password2}
+                        name="password2"
+                    />
                     <button 
                         type="submit"
                     >Register</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

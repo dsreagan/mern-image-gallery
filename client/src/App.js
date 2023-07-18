@@ -14,6 +14,8 @@ import {
 
 export default function App() {
 
+  const [userInfo, setUserInfo] = useState(
+    {userId: '', userName: '', accessToken: ''})
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [images, setImages] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -28,12 +30,12 @@ export default function App() {
       setIsLoggedIn(false)
     }
   }
-  // useEffect(() => {
-  //   const procedure = async () => {
-  //     logIn()
-  //   }
-  //   procedure()
-  // })
+  useEffect(() => {
+    const procedure = async () => {
+      console.log(userInfo)
+    }
+    procedure()
+  })
 
   return (
     <div className="App">
@@ -48,6 +50,10 @@ export default function App() {
       {modalIsOpen && 
         <Modal 
         setModalIsOpen={setModalIsOpen}
+        setUserInfo={(userId, userName, accessToken) => {
+            setUserInfo({userId: userId, userName: userName, accessToken: accessToken})
+          }
+        }
         />
       }
     </div>
