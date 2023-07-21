@@ -1,35 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
+import AccountCircle from './components/AccountCircle'
 import Images from './components/Images'
 import Modal from './components/Modal'
-import axios from 'axios'
-import { 
-  registerUser, 
-  getSavedImages,
-  logInUser, 
-  saveImage, 
-  deleteImage 
-} from './utils/operations'
+import BodyText from './components/BodyText'
 
 export default function App() {
 
   const [userInfo, setUserInfo] = useState(
-    {userId: '', userName: '', accessToken: ''})
+    {userId: '', userName: '', accessToken: ''}
+  )
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [images, setImages] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const logIn = async () => {
-    try {
-      const {userId, userName, accessToken} =  await logInUser('Mike', 'hello123') // get from form
-      console.log(userId, userName, accessToken) // for testing
-      setIsLoggedIn(true)
-    } catch (err) {
-      console.log('Wrong username or password.')
-      setIsLoggedIn(false)
-    }
-  }
   useEffect(() => {
     const procedure = async () => {
       console.log(userInfo)
@@ -39,14 +23,24 @@ export default function App() {
 
   return (
     <div className="App">
-      <Header
+      <AccountCircle 
         isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}     
+        setModalIsOpen={setModalIsOpen} 
+      />
+
+      <Header
         setImages={setImages}
-        setModalIsOpen={setModalIsOpen}
       />
-      <Images 
+
+      {images.length > 0 ?
+        <Images 
         images={images}
-      />
+        />
+        :
+        <BodyText />
+      }
+
       {modalIsOpen && 
         <Modal 
         setModalIsOpen={setModalIsOpen}
@@ -56,6 +50,7 @@ export default function App() {
         }
         />
       }
+      
     </div>
   )
 }

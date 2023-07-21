@@ -34,15 +34,19 @@ export default function Modal(props) {
         // register
         formData.password1 === formData.password2 && 
             registerUser(formData.username, formData.password1)
-        // log in
-        // this doesn't work
-        handleLogIn()
-        // this doesn't even work
-        const {userId, userName, accessToken} = logInUser(
-            formData.username, formData.password1
-        )
-        props.setUserInfo(userId, userName, accessToken)
-        // maybe just reset the form and get them to log in
+
+        setTab(1)
+        setFormData({username: '', password1: '', password2: ''})
+
+        // log ine
+        // // this doesn't work
+        // handleLogIn()
+        // // this doesn't even work
+        // const {userId, userName, accessToken} = logInUser(
+        //     formData.username, formData.password1
+        // )
+        // props.setUserInfo(userId, userName, accessToken)
+        // // maybe just reset the form and get them to log in
     }
 
   return (
@@ -84,7 +88,7 @@ export default function Modal(props) {
                         type="text" 
                         placeholder="password"
                         onChange={handleChange}
-                        value={formData.email}
+                        value={formData.password1}
                         name="password1"
                     />
                     <button 

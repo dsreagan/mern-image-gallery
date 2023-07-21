@@ -1,13 +1,35 @@
 body { 
     margin: 0;
-    background-color: #F5F5F5;
+    background-color: #6C757D;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+input {
+    background-color: #DEE2E6;
+    color: #495057;
 }
 
 .header {
-    background-color: #333533;
+    background-color: #343A40;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     height: 90px;
+}
+
+.account-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a5a5a5;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 13px;
+    left: 25px;
+    z-index: 10;
+    opacity: 0.8;
 }
 
 .search-div {
@@ -40,14 +62,14 @@ input:focus {
 
 .search-bar-wrapper > button {
     height: 27px;
-    color: white;
+    color: #495057;
+    background-color: #ADB5BD;
     cursor: pointer;
     border-radius: 0px 8px 8px 0px;
 }
 
 .search-bar-wrapper > button:hover {
-    background-color: white;
-    color: lightgrey;
+    color: #F8F9FA;
 }
 
 .icon-div {
@@ -60,8 +82,19 @@ input:focus {
 .icon {
     background-color: #a5a5a5;
     border-radius: 25%;
-    padding: 10px;
+    padding: 8px 10px;
     cursor: pointer;
+}
+
+.body-text-div {
+    position: fixed;
+    text-align: center;
+    line-height: 40px;
+}
+
+.body-text {
+    padding: 100px;
+    opacity: 0.4;
 }
 
 .image-grid {
@@ -146,7 +179,8 @@ input:focus {
     right: 0;
     padding: 6px 8px;
     background-color: darkgrey;
-    border-radius: 0 8px;
+    border-radius: 0 8px 0 0;
+    cursor: pointer;
 }
 
 .tab {
@@ -195,6 +229,7 @@ input:focus {
     width: 50%;
     border-radius: 8px;
     border: 1px solid darkgrey; 
+    padding: 3px;
 }
 
 
