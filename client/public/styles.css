@@ -1,3 +1,7 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
 body { 
     margin: 0;
     background-color: #6C757D;
@@ -89,7 +93,7 @@ input:focus {
 .body-text-div {
     position: fixed;
     text-align: center;
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .body-text {
@@ -158,7 +162,7 @@ input:focus {
     z-index: 100;
     width: 400px;
     height: 300px;
-    background: #f1f1f1;
+    background: #F8F9FA;
     padding: 0;
     border-radius: 8px;
 }
@@ -184,11 +188,10 @@ input:focus {
 }
 
 .tab {
-    padding: 15px 35px;
+    padding: 10px 35px;
     text-align: center;
-    background: rgba(128, 128, 128, 0.075);
+    background: #dee2e6;
     cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
     box-sizing: content-box;
     position: relative;
     outline: none;
@@ -200,8 +203,7 @@ input:focus {
 }
 
 .active-tab {
-    background: white;
-    border-bottom: 1px solid transparent;
+    background: #ADB5BD;
 }
 
 .modal-content {
@@ -210,10 +212,11 @@ input:focus {
 
 .content {
     display: none;
-    background: white;
+    background: #ADB5BD;
     padding: 20px;
     height: 100%;
     border-radius: 0 0 8px 8px;
+
 }
 
 .active-content {
@@ -224,12 +227,21 @@ input:focus {
     gap: 20px;
 }
 
-.active-content > input, .active-content > button {
+.active-content > input {
     height: 20px;
     width: 50%;
     border-radius: 8px;
     border: 1px solid darkgrey; 
     padding: 3px;
+    background-color: #F8F9FA;
 }
 
-
+.modal-btn {
+    height: 30px;
+    width: 30%;
+    border-radius: 8px;
+    border: 1px solid darkgrey; 
+    background-color: #F8F9FA;
+    padding: 3px;
+    cursor: pointer;
+}

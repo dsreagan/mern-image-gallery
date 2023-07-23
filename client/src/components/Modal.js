@@ -19,8 +19,6 @@ export default function Modal(props) {
         setTab(index)
     }
 
-    // Here 
-    // deal with login success and failure
     const handleLogIn = (e) => {
         e.preventDefault()
         const {userId, userName, accessToken} = logInUser(
@@ -31,22 +29,12 @@ export default function Modal(props) {
 
     const handleRegistration = (e) => {
         e.preventDefault()
-        // register
+        
         formData.password1 === formData.password2 && 
             registerUser(formData.username, formData.password1)
 
         setTab(1)
         setFormData({username: '', password1: '', password2: ''})
-
-        // log ine
-        // // this doesn't work
-        // handleLogIn()
-        // // this doesn't even work
-        // const {userId, userName, accessToken} = logInUser(
-        //     formData.username, formData.password1
-        // )
-        // props.setUserInfo(userId, userName, accessToken)
-        // // maybe just reset the form and get them to log in
     }
 
   return (
@@ -92,6 +80,7 @@ export default function Modal(props) {
                         name="password1"
                     />
                     <button 
+                        className="modal-btn"
                         type="submit"
                     >Log In</button>
                 </form>
@@ -124,6 +113,7 @@ export default function Modal(props) {
                         name="password2"
                     />
                     <button 
+                        className="modal-btn"
                         type="submit"
                     >Register</button>
                 </form>
