@@ -2,23 +2,29 @@ import { useState, useEffect } from 'react'
 import Image from '../components/Image'
 import { saveImage, deleteImage } from '../utils/operations'
 
-export default function Images ({ images }) {
+export default function Images (props) {
 
   const [targetImage, setTargetImage] = useState('')
-  const [saveImage, setSaveImage] = useState(false)
+  // not working properly and redundant
+  const [favoriteImage, setFavoriteImage] = useState(false)
 
   useEffect(() => {
 
-    // Save or delete from user's library
     const likeUnlikeImage = async () => {
       try {
-        if (saveImage) {
+        if (favoriteImage) {
           console.log(`liked ${targetImage}`)
-          // save image take 3 arguments
-          // await saveImage(targetImage)
+          await saveImage(
+            props.userInfo.userId, 
+            props.userInfo.accessToken, 
+            targetImage
+          )
         } else {
-          // delete image take 3 arguments
-          // await deleteImage("testing123")
+          await deleteImage(
+            props.userInfo.userId, 
+            props.userInfo.accessToken, 
+            targetImage
+          )
           console.log(`unliked ${targetImage}`)
         }
         setTargetImage('')
@@ -28,16 +34,16 @@ export default function Images ({ images }) {
     }
     targetImage.length > 0 && likeUnlikeImage()
 
-  }, [targetImage, saveImage])
+  }, [targetImage, favoriteImage, props])
 
     return (
         <div  className="image-grid">
-            {images.length > 0 && images.map((image) => (
+            {props.images.length > 0 && props.images.map((image) => (
                 <Image 
                     key={image.id}
                     image={image.url} 
                     setTargetImage={setTargetImage}
-                    setSaveImage={setSaveImage}
+                    setFavoriteImage={setFavoriteImage}
                 />
             )
             )}

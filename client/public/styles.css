@@ -76,11 +76,15 @@ input:focus {
     color: #F8F9FA;
 }
 
-.icon-div {
-    grid-column: 3;
+.favorites-square {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 13px;
+    right: 25px;
+    z-index: 10;
+    opacity: 0.8;
 }
 
 .icon {
@@ -216,6 +220,7 @@ input:focus {
     padding: 20px;
     height: 100%;
     border-radius: 0 0 8px 8px;
+    background-color: red;
 
 }
 

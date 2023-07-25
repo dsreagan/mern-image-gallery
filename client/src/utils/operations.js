@@ -1,13 +1,16 @@
 import axios from 'axios'
 
+// const apiUrl = process.env.API_URL
+
 const registerUser = async (username, password) => {
     try {
-        const res = await axios.post('http://localhost:3000/auth/register',
+        const res = await axios.post(`https://image-gallery-api-wua0.onrender.com/auth/register`,
             {
                 username: username,
                 password: password
             }
         )
+        // maybe catch res.data.username and check for that in modal.js
         console.log(res.data)
     } catch (err) {
         console.log(err)
@@ -16,12 +19,13 @@ const registerUser = async (username, password) => {
 
 const logInUser = async (username, password) => {
     try {
-        const res = await axios.post('http://localhost:3000/auth/login',
+        const res = await axios.post(`https://image-gallery-api-wua0.onrender.com/auth/login`,
             {
                 username: username,
                 password: password
             }
         )
+        console.log(res)
         const accessToken = res.data.accessToken
         const userName = res.data.username
         const userId = res.data._id
@@ -33,7 +37,7 @@ const logInUser = async (username, password) => {
 
 const saveImage = async (userId, accessToken, imageUrl) => {
     try {
-        const res = await axios.put(`http://localhost:3000/user/save/${userId}`, 
+        const res = await axios.put(`https://image-gallery-api-wua0.onrender.com/user/save/${userId}`, 
             {
                 image: imageUrl
             },
@@ -50,9 +54,8 @@ const saveImage = async (userId, accessToken, imageUrl) => {
 }
 
 const deleteImage = async (userId, accessToken, imageUrl) => {
-    console.log(accessToken)
     try {
-        const res = await axios.put(`http://localhost:3000/user/delete/${userId}`, 
+        const res = await axios.put(`https://image-gallery-api-wua0.onrender.com/user/delete/${userId}`, 
             {
                 image: imageUrl
             },
@@ -71,7 +74,8 @@ const deleteImage = async (userId, accessToken, imageUrl) => {
 // Get Liked Images
 const getSavedImages = async (userId, accessToken) => {
     try {
-        const res = await axios.get(`http://localhost:3000/user/library/${userId}`,
+        
+        const res = await axios.get(`https://image-gallery-api-wua0.onrender.com/user/library/${userId}`,
             {
                 headers: {
                     token: `Bearer ${accessToken}`

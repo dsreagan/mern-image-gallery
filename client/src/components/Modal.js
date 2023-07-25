@@ -5,8 +5,13 @@ export default function Modal(props) {
 
     const [tab, setTab] = useState(1)
     const [formData, setFormData] = useState({username: '', password1: '', password2: ''})
+    const [wrongCredVisible, setWrongCredVisible] = useState(false)
+    const [succRegMsg, setSuccRegMsg] = useState('')
+    const [failRegMsg, setFailRegMsg] = useState('')
+
 
     const handleChange = (event) => {
+        setWrongCredVisible(false)
         setFormData(prevData => {
             return {
                 ...prevData,
@@ -18,25 +23,45 @@ export default function Modal(props) {
     const changeTab = (index) => {
         setTab(index)
     }
-
-    const handleLogIn = (e) => {
+    
+    const handleLogIn = async (e) => {
         e.preventDefault()
-        const {userId, userName, accessToken} = logInUser(
+        const {userId, userName, accessToken} = await logInUser(
             formData.username, formData.password1
         )
-        props.setUserInfo(userId, userName, accessToken)
+        if (userId) {
+            props.setUserInfo(
+                {
+                    userId: userId, 
+                    userName: userName, 
+                    accessToken: accessToken
+                }
+            ) 
+            props.setModalIsOpen(false)
+        } else {
+            setWrongCredVisible(true)
+        }
     }
 
     const handleRegistration = (e) => {
         e.preventDefault()
         
-        formData.password1 === formData.password2 && 
-            registerUser(formData.username, formData.password1)
+        let response
+        
+        if (formData.password1 === formData.password2) {
+            response = registerUser(formData.username, formData.password1)
+            console.log("here   " + response)
+        } else {
+            setFailRegMsg(`Passwords don't match.`)
+        }
 
-        setTab(1)
-        setFormData({username: '', password1: '', password2: ''})
+        if (response) {
+            setTab(1)
+            setFormData({username: '', password1: '', password2: ''})
+            setSuccRegMsg(`Registration complete! Log in to start.`)
+        }
     }
-
+    
   return (
     <div className="overlay">
         <div className="modal">
@@ -65,6 +90,7 @@ export default function Modal(props) {
                     }
                     onSubmit={handleLogIn}
                 >
+                    {succRegMsg !== '' && succRegMsg}
                     <input 
                         type="text" 
                         placeholder="username" 
@@ -83,6 +109,7 @@ export default function Modal(props) {
                         className="modal-btn"
                         type="submit"
                     >Log In</button>
+                    {wrongCredVisible && <p className="modal-msg">Incorrect username or password.</p>}
                 </form>
                 <form 
                     className={tab === 2 ? 
@@ -116,6 +143,7 @@ export default function Modal(props) {
                         className="modal-btn"
                         type="submit"
                     >Register</button>
+                    {failRegMsg !== '' && failRegMsg}
                 </form>
             </div>
         </div>

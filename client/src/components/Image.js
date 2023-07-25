@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { FavoriteBorder, Favorite } from '@mui/icons-material'
 
-export default function Image({ image, setTargetImage, setSaveImage }) {
+export default function Image({ image, setTargetImage, setFavoriteImage }) {
 
+    // not working properly and redundant
     const [isFavorite, setIsFavorite] = useState(false)
 
     const likeUnlikeImage = async () => {
         setIsFavorite(prev => !prev)
-        setSaveImage(prev => !prev)
+        setFavoriteImage(prev => !prev)
         setTargetImage(image)
     }
 

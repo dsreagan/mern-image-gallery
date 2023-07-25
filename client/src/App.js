@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import AccountCircle from './components/AccountCircle'
+import FavoritesSquare from './components/FavoritesSquare'
 import Images from './components/Images'
 import Modal from './components/Modal'
 import BodyText from './components/BodyText'
@@ -15,8 +16,13 @@ export default function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
+
     const procedure = async () => {
       console.log(userInfo)
+      if(userInfo.userId.length > 0) {
+        setIsLoggedIn(true)
+        console.log(userInfo.userId)
+      }
     }
     procedure()
   })
@@ -29,25 +35,34 @@ export default function App() {
         setModalIsOpen={setModalIsOpen} 
       />
 
+      {isLoggedIn && 
+        <FavoritesSquare 
+          userInfo={userInfo}
+          setImages={setImages}     
+        />
+      }
+      
       <Header
         setImages={setImages}
+        userInfo={userInfo}
       />
 
       {images.length > 0 ?
         <Images 
-        images={images}
+          images={images}
+          userInfo={userInfo}
         />
         :
-        <BodyText />
+        <BodyText
+          userName={userInfo.userName.toString()}
+          isLoggedIn={isLoggedIn}
+        />
       }
 
       {modalIsOpen && 
         <Modal 
         setModalIsOpen={setModalIsOpen}
-        setUserInfo={(userId, userName, accessToken) => {
-            setUserInfo({userId: userId, userName: userName, accessToken: accessToken})
-          }
-        }
+        setUserInfo={setUserInfo}
         />
       }
       
