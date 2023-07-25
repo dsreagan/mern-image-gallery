@@ -21,7 +21,6 @@ export default function App() {
       console.log(userInfo)
       if(userInfo.userId.length > 0) {
         setIsLoggedIn(true)
-        console.log(userInfo.userId)
       }
     }
     procedure()

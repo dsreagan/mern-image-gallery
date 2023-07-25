@@ -6,8 +6,16 @@ export default function FavoritesSquare(props) {
     // You haven't liked any images yet, search for images and click them to like them and save them in this folder.
     // pop up window with above statement
     const loadLikedImages = async () => {
-        const images = await getSavedImages(props.userInfo.userId, props.userInfo.accessToken)
-        images && props.setImages(images)
+        const urlArray = await getSavedImages(props.userInfo.userId, props.userInfo.accessToken)
+        if(urlArray) {
+            const images = urlArray.map((url, index) => {
+                return {
+                    id: index,
+                    url: url
+                }
+            })
+            props.setImages(images)
+        }
     }
 
   return (

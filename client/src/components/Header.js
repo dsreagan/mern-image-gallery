@@ -5,7 +5,6 @@ import fetchImages from '../utils/fetchImages'
 export default function Header(props) {
 
     const [searchInput, setSearchInput] = useState('')
-    const [imageData, setImageData] = useState([])
 
     const handleChange = (event) => {
         setSearchInput(event.target.value)
@@ -23,24 +22,21 @@ export default function Header(props) {
     }
 
     return (
-        <div className="header">
-            <div className="search-div">
-                <div className="search-bar-wrapper">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        onChange={handleChange}
-                        value={searchInput}
-                    />
-                    <button
-                        disabled={!searchInput}
-                        onClick={handleSearch}
-                    >
-                    <Search />
-                    </button>
-                </div>
+        <div className="search-div">
+            <div className="search-bar-wrapper">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    onChange={handleChange}
+                    value={searchInput}
+                />
+                <button
+                    disabled={!searchInput}
+                    onClick={handleSearch}
+                >
+                <Search />
+                </button>
             </div>
-            
         </div>
     )
 }

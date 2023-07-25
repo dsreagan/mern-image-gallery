@@ -17,7 +17,7 @@ export default function BodyText(props) {
                 Search for images using the search bar above. 
                 Log in or sign up by clicking the account icon. 
                 Once logged in you can like any image to revisit it 
-                later in your favorites library by clicking the heart.`
+                later in your favorites library.`
             }
         </h1>
     </div>

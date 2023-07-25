@@ -37,7 +37,8 @@ input {
 }
 
 .search-div {
-    grid-column: 2;
+    background-color: #343A40;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;

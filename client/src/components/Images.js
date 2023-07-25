@@ -38,7 +38,7 @@ export default function Images (props) {
 
     return (
         <div  className="image-grid">
-            {props.images.length > 0 && props.images.map((image) => (
+            {props.images.map((image) => (
                 <Image 
                     key={image.id}
                     image={image.url} 
