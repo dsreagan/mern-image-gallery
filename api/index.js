@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const port = 3000
 const dotenv = require('dotenv')
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
@@ -19,5 +18,5 @@ app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`Listening at http://localhost:${port}`)
+    console.log(`Listening at ...`)
 })

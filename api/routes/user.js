@@ -8,7 +8,7 @@ router.put('/save/:id', verifyToken, async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id,
             {
-                $push: { images: saveImage }
+                $addToSet: { images: saveImage }
             }
         )
         res.status(200).json(user.images)
