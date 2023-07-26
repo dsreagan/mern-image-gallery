@@ -26,10 +26,11 @@ export default function Modal(props) {
     
     const handleLogIn = async (e) => {
         e.preventDefault()
-        const {userId, userName, accessToken} = await logInUser(
-            formData.username, formData.password1
-        )
-        if (userId) {
+        try {
+            const {userId, userName, accessToken} = await logInUser(
+                formData.username, formData.password1
+            )
+
             props.setUserInfo(
                 {
                     userId: userId, 
@@ -38,7 +39,8 @@ export default function Modal(props) {
                 }
             ) 
             props.setModalIsOpen(false)
-        } else {
+
+        } catch (error) {
             setWrongCredVisible(true)
         }
     }
@@ -50,7 +52,6 @@ export default function Modal(props) {
         
         if (formData.password1 === formData.password2) {
             response = registerUser(formData.username, formData.password1)
-            console.log("here   " + response)
         } else {
             setFailRegMsg(`Passwords don't match.`)
         }

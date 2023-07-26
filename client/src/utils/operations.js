@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-// const apiUrl = process.env.API_URL
-
 const registerUser = async (username, password) => {
     try {
         const res = await axios.post(`https://image-gallery-api-wua0.onrender.com/auth/register`,

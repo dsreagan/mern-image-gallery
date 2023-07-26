@@ -19,6 +19,7 @@ export default function Header(props) {
             }
         })
         props.setImages(images)
+        props.setAreFavoriteImages(false)
     }
 
     return (

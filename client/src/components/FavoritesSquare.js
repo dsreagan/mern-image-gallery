@@ -15,6 +15,7 @@ export default function FavoritesSquare(props) {
                 }
             })
             props.setImages(images)
+            props.setAreFavoriteImages(true)
         }
     }
 
