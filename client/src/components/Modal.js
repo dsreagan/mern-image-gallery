@@ -91,13 +91,14 @@ export default function Modal(props) {
                     }
                     onSubmit={handleLogIn}
                 >
-                    {succRegMsg !== '' && succRegMsg}
+                    <p className="row-1 text">{succRegMsg !== '' && succRegMsg}</p>
                     <input 
                         type="text" 
                         placeholder="username" 
                         onChange={handleChange}
                         value={formData.username}
                         name="username"
+                        className="row-2"
                     />
                     <input 
                         type="text" 
@@ -105,12 +106,13 @@ export default function Modal(props) {
                         onChange={handleChange}
                         value={formData.password1}
                         name="password1"
+                        className="row-3"
                     />
                     <button 
-                        className="modal-btn"
+                        className="modal-btn row-4"
                         type="submit"
                     >Log In</button>
-                    {wrongCredVisible && <p className="modal-msg">Incorrect username or password.</p>}
+                    <p className="modal-msg row-5 text">{wrongCredVisible && 'Incorrect username or password.'}</p>
                 </form>
                 <form 
                     className={tab === 2 ? 
@@ -125,6 +127,7 @@ export default function Modal(props) {
                         onChange={handleChange}
                         value={formData.username}
                         name="username"
+                        className="row-1"
                     />
                     <input 
                         type="text" 
@@ -132,6 +135,7 @@ export default function Modal(props) {
                         onChange={handleChange}
                         value={formData.password1}
                         name="password1"
+                        className="row-2"
                     />
                     <input 
                         type="text" 
@@ -139,12 +143,13 @@ export default function Modal(props) {
                         onChange={handleChange}
                         value={formData.password2}
                         name="password2"
+                        className="row-3"
                     />
                     <button 
-                        className="modal-btn"
                         type="submit"
+                        className="modal-btn row-4"
                     >Register</button>
-                    {failRegMsg !== '' && failRegMsg}
+                    <p className="row-5 text">{failRegMsg !== '' && failRegMsg}</p>
                 </form>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Search, Favorite } from '@mui/icons-material'
+import { Search } from '@mui/icons-material'
 import fetchImages from '../utils/fetchImages'
 
 export default function Header(props) {
