@@ -101,7 +101,7 @@ export default function Modal(props) {
                         className="row-2"
                     />
                     <input 
-                        type="text" 
+                        type="password" 
                         placeholder="password"
                         onChange={handleChange}
                         value={formData.password1}
@@ -130,7 +130,7 @@ export default function Modal(props) {
                         className="row-1"
                     />
                     <input 
-                        type="text" 
+                        type="password" 
                         placeholder="password" 
                         onChange={handleChange}
                         value={formData.password1}
@@ -138,7 +138,7 @@ export default function Modal(props) {
                         className="row-2"
                     />
                     <input 
-                        type="text" 
+                        type="password" 
                         placeholder="re-enter password" 
                         onChange={handleChange}
                         value={formData.password2}

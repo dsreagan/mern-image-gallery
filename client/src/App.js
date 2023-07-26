@@ -13,7 +13,7 @@ export default function App() {
   )
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [images, setImages] = useState([])
-  const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   const [areFavoriteImages, setAreFavoriteImages] = useState(false)
 
   useEffect(() => {
