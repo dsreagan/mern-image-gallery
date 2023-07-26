@@ -8,12 +8,13 @@ export default function Image(props) {
 
     useEffect(() => {
 
+        // this needs to be refactored
+        // every image loaded has to go through a db transaction like this
         isFavorite ? 
             saveImage(props.userInfo.userId, props.userInfo.accessToken, props.image)
         :   
             deleteImage(props.userInfo.userId, props.userInfo.accessToken, props.image)
 
-        console.log(isFavorite)
     }, [isFavorite, props])
 
     return (

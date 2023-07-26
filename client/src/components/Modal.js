@@ -39,10 +39,23 @@ export default function Modal(props) {
                 }
             ) 
             props.setModalIsOpen(false)
-
+            props.setIsLoggedIn(true)
         } catch (error) {
             setWrongCredVisible(true)
         }
+    }
+
+    const handleLogOut = () => {
+        props.setUserInfo(
+            {
+                userId: '', 
+                userName: '', 
+                accessToken:  ''
+            }
+        ) 
+        props.setIsLoggedIn(false)
+        props.setModalIsOpen(false)
+        props.setImages([])
     }
 
     const handleRegistration = (e) => {
@@ -65,94 +78,104 @@ export default function Modal(props) {
     
   return (
     <div className="overlay">
-        <div className="modal">
-            <div className="modal-top">
-                <div className="modal-tabs">
-                    <button 
-                        className={tab === 1 ? "tab active-tab" : "tab"}
-                        onClick={() => changeTab(1)}
-                    >Log In</button>
-                    <button 
-                        className={tab === 2 ? "tab active-tab" : "tab"}
-                        onClick={() => changeTab(2)}
-                    >Register</button>
-                </div>
+        
+        {props.isLoggedIn ?
+            <div className="logout-modal">
                 <button 
-                    className="modal-close-btn"
-                    type="button"
-                    onClick={() => props.setModalIsOpen(false)}
-                >X</button>
+                    className="modal-btn"
+                    onClick={handleLogOut}    
+                >Log out</button>
             </div>
-            <div className="modal-content">
-                <form 
-                    className={tab === 1 ? 
-                        "content active-content" : 
-                        "content"
-                    }
-                    onSubmit={handleLogIn}
-                >
-                    <p className="row-1 text">{succRegMsg !== '' && succRegMsg}</p>
-                    <input 
-                        type="text" 
-                        placeholder="username" 
-                        onChange={handleChange}
-                        value={formData.username}
-                        name="username"
-                        className="row-2"
-                    />
-                    <input 
-                        type="password" 
-                        placeholder="password"
-                        onChange={handleChange}
-                        value={formData.password1}
-                        name="password1"
-                        className="row-3"
-                    />
+        :
+            <div className="modal">
+                <div className="modal-top">
+                    <div className="modal-tabs">
+                        <button 
+                            className={tab === 1 ? "tab active-tab" : "tab"}
+                            onClick={() => changeTab(1)}
+                        >Log In</button>
+                        <button 
+                            className={tab === 2 ? "tab active-tab" : "tab"}
+                            onClick={() => changeTab(2)}
+                        >Register</button>
+                    </div>
                     <button 
-                        className="modal-btn row-4"
-                        type="submit"
-                    >Log In</button>
-                    <p className="modal-msg row-5 text">{wrongCredVisible && 'Incorrect username or password.'}</p>
-                </form>
-                <form 
-                    className={tab === 2 ? 
-                        "content active-content" : 
-                        "content"
-                    }
-                    onSubmit={handleRegistration}
-                >
-                    <input 
-                        type="text" 
-                        placeholder="username" 
-                        onChange={handleChange}
-                        value={formData.username}
-                        name="username"
-                        className="row-1"
-                    />
-                    <input 
-                        type="password" 
-                        placeholder="password" 
-                        onChange={handleChange}
-                        value={formData.password1}
-                        name="password1"
-                        className="row-2"
-                    />
-                    <input 
-                        type="password" 
-                        placeholder="re-enter password" 
-                        onChange={handleChange}
-                        value={formData.password2}
-                        name="password2"
-                        className="row-3"
-                    />
-                    <button 
-                        type="submit"
-                        className="modal-btn row-4"
-                    >Register</button>
-                    <p className="row-5 text">{failRegMsg !== '' && failRegMsg}</p>
-                </form>
+                        className="modal-close-btn"
+                        type="button"
+                        onClick={() => props.setModalIsOpen(false)}
+                    >X</button>
+                </div>
+                <div className="modal-content">
+                    <form 
+                        className={tab === 1 ? 
+                            "content active-content" : 
+                            "content"
+                        }
+                        onSubmit={handleLogIn}
+                    >
+                        <p className="row-1 text">{succRegMsg !== '' && succRegMsg}</p>
+                        <input 
+                            type="text" 
+                            placeholder="username" 
+                            onChange={handleChange}
+                            value={formData.username}
+                            name="username"
+                            className="row-2"
+                        />
+                        <input 
+                            type="password" 
+                            placeholder="password"
+                            onChange={handleChange}
+                            value={formData.password1}
+                            name="password1"
+                            className="row-3"
+                        />
+                        <button 
+                            className="modal-btn row-4"
+                            type="submit"
+                        >Log In</button>
+                        <p className="modal-msg row-5 text">{wrongCredVisible && 'Incorrect username or password.'}</p>
+                    </form>
+                    <form 
+                        className={tab === 2 ? 
+                            "content active-content" : 
+                            "content"
+                        }
+                        onSubmit={handleRegistration}
+                    >
+                        <input 
+                            type="text" 
+                            placeholder="username" 
+                            onChange={handleChange}
+                            value={formData.username}
+                            name="username"
+                            className="row-1"
+                        />
+                        <input 
+                            type="password" 
+                            placeholder="password" 
+                            onChange={handleChange}
+                            value={formData.password1}
+                            name="password1"
+                            className="row-2"
+                        />
+                        <input 
+                            type="password" 
+                            placeholder="re-enter password" 
+                            onChange={handleChange}
+                            value={formData.password2}
+                            name="password2"
+                            className="row-3"
+                        />
+                        <button 
+                            type="submit"
+                            className="modal-btn row-4"
+                        >Register</button>
+                        <p className="row-5 text">{failRegMsg !== '' && failRegMsg}</p>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
     </div>
   )
 }

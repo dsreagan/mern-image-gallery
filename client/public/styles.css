@@ -45,7 +45,6 @@ input {
 }
 
 .search-bar-wrapper {
-    background-color: lightgrey;
     display: flex;
     border-radius: 8px;
 }
@@ -86,13 +85,16 @@ input:focus {
     right: 25px;
     z-index: 10;
     opacity: 0.8;
-}
-
-.icon {
+    
     background-color: #a5a5a5;
     border-radius: 25%;
     padding: 8px 10px;
     cursor: pointer;
+    position: fixed;
+    top: 13px;
+    right: 25px;
+    z-index: 10;
+    opacity: 0.8;
 }
 
 .body-text-div {
@@ -155,6 +157,23 @@ input:focus {
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 99;
+}
+
+.logout-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 300px;
+    height: 150px;
+    background: #ADB5BD;
+    padding: 0;
+    border-radius: 8px;
 }
 
 .modal {
@@ -224,18 +243,11 @@ input:focus {
 }
 
 .active-content {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; */
-
     display: grid;
     grid-template-columns: 0.3fr 1fr 0.3fr;
     grid-template-rows: repeat(5, 50px);
     align-content: center;
     max-height: min-content;
-
 }
 
 .row-1 {
@@ -294,4 +306,58 @@ input:focus {
     background-color: #F8F9FA;
     padding: 3px;
     cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .search-div {
+        height: 70px;
+    }
+    
+    .search-bar-wrapper > input {
+        width: 180px;
+    } 
+
+    .account-circle {
+        padding: 4px;
+        top: 11px;
+        left: 10px;
+        background-color: #a5a5a5dc;
+    }
+
+    .favorites-square {
+        padding: 4px;
+        top: 11px;
+        right: 10px;
+        background-color: #a5a5a5dc;
+    }
+
+    .body-text-div {
+        line-height: 40px;
+    }
+    
+    .body-text {
+        padding: 25px 10px;
+        font-size: 20px;
+    }
+    
+    .modal {
+        width: 275px;
+        height: 100px;
+        transform: translate(-50%, -200%); 
+        /* This should be done better, all phone screens are different */
+    }
+    
+    .tab {
+        padding: 6px 25px;
+    }
+    
+    .content {
+        padding: 10px;
+    }
+    
+    .active-content {
+        display: grid;
+        grid-template-columns: 0.1fr 1fr 0.1fr;
+        grid-template-rows: repeat(5, 45px);
+    }
 }

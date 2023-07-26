@@ -10,6 +10,12 @@ export default function Header(props) {
         setSearchInput(event.target.value)
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch(searchInput)
+        }
+    }
+
     const handleSearch = async () => {
         const unsplashData = await fetchImages(searchInput)
         const images = unsplashData.map(singleImage => {
@@ -30,6 +36,7 @@ export default function Header(props) {
                     placeholder="Search"
                     onChange={handleChange}
                     value={searchInput}
+                    onKeyDown={handleKeyDown}
                 />
                 <button
                     disabled={!searchInput}

@@ -18,11 +18,12 @@ export default function App() {
 
   useEffect(() => {
 
+    // delete this before build and deploy
     const procedure = async () => {
       console.log(userInfo)
-      if(userInfo.userId.length > 0) {
-        setIsLoggedIn(true)
-      }
+      // if(userInfo.userId.length > 0) {
+      //   setIsLoggedIn(true)
+      // }
     }
     procedure()
   })
@@ -64,8 +65,11 @@ export default function App() {
 
       {modalIsOpen && 
         <Modal 
-        setModalIsOpen={setModalIsOpen}
-        setUserInfo={setUserInfo}
+          setModalIsOpen={setModalIsOpen}
+          setUserInfo={setUserInfo}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setImages={setImages}
         />
       }
       

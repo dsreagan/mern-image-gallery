@@ -20,12 +20,13 @@ export default function FavoritesSquare(props) {
     }
 
   return (
-    <div className="favorites-square"> 
-        <div className="icon" onClick={loadLikedImages}>
-            <Favorite 
-                style={{ color: "white", fontSize:40 }} 
-            />
-        </div>
+    <div 
+        className="favorites-square"
+        onClick={loadLikedImages}
+    > 
+        <Favorite 
+            style={{ color: "white", fontSize:40 }} 
+        />
     </div>
   )
 }

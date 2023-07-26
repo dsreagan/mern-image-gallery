@@ -16,7 +16,7 @@ export default function BodyText(props) {
                 `This is an image gallery. 
                 Search for images using the search bar above. 
                 Log in or sign up by clicking the account icon. 
-                Once logged in you can like any image to revisit it 
+                Once logged in you can like any image and revisit it 
                 later in your favorites library.`
             }
         </h1>
