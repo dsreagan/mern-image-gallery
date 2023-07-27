@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FavoriteBorder, Favorite } from '@mui/icons-material'
 
 export default function Image(props) {
 
-    const [isFavorite, setIsFavorite] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(props.favorited ? true : false)
 
     const toggleFavorite = () => {
         setIsFavorite(prev => !prev)
@@ -22,7 +22,7 @@ export default function Image(props) {
                     <FavoriteBorder style={{ color: "lightgrey", fontSize:45, margin:8 }}/>
                 }
             </div>    
-            <img className="image" src={props.image} alt="Search images" />
+            <img className="image" src={props.image} alt="images" />
         </div>
     )
 }

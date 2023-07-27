@@ -14,7 +14,6 @@ export default function Images (props) {
 
     useEffect(() => {
 
-
         const imagesForNonUser = async () => {
 
             if (props.search.length > 0) {
@@ -23,7 +22,8 @@ export default function Images (props) {
                 const unsplashImages = unsplashData.map(singleImage => {
                     return {
                         id: singleImage.cover_photo.id,
-                        url: singleImage.cover_photo.urls.small
+                        url: singleImage.cover_photo.urls.small,
+                        favorited: false
                     }
                 })
                 setImagesToDisplay(unsplashImages)
@@ -32,8 +32,7 @@ export default function Images (props) {
             }
         }
         
-
-
+        
         const imagesForUser = async () => {
             try {
 
@@ -46,12 +45,13 @@ export default function Images (props) {
                 setImgToSave('')
 
                 const urlArray = await getSavedImages(props.userInfo.userId, props.userInfo.accessToken)
-                    const favImages = urlArray.map((url, index) => {
-                        return {
-                            id: index,
-                            url: url
-                        }
-                    })
+                const favImages = urlArray.map((url, index) => {
+                    return {
+                        id: index,
+                        url: url,
+                        favorited: true
+                    }
+                })
             
                 if (props.search.length > 0) {
 
@@ -59,7 +59,8 @@ export default function Images (props) {
                     const unsplashImages = unsplashData.map(singleImage => {
                         return {
                             id: singleImage.cover_photo.id,
-                            url: singleImage.cover_photo.urls.small
+                            url: singleImage.cover_photo.urls.small,
+                            favorited: urlArray.includes(singleImage.cover_photo.urls.small)
                         }
                     })
                     setImagesToDisplay(unsplashImages)
@@ -87,16 +88,22 @@ export default function Images (props) {
 
     return (
         <div  className="image-grid">
-            {imagesToDisplay.map((image) => (
+            {imagesToDisplay.length > 0 ? imagesToDisplay.map((image) => (
                 <Image 
                     key={image.id}
                     image={image.url}
+                    favorited={image.favorited}
                     setImgToSave={setImgToSave}
                     setImgToDelete={setImgToDelete}
                 />
             )
-            )}
+            )
+        :
+            <BodyText
+                isLoggedIn={props.isLoggedIn}
+                userName={props.userInfo.userName}
+            />
+        }
         </div>
-        
     )
 }

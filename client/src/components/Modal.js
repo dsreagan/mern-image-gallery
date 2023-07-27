@@ -84,6 +84,11 @@ export default function Modal(props) {
                     className="modal-btn"
                     onClick={handleLogOut}    
                 >Log out</button>
+                <button 
+                    className="modal-close-btn"
+                    type="button"
+                    onClick={() => props.setModalIsOpen(false)}
+                >X</button>
             </div>
         :
             <div className="modal">
