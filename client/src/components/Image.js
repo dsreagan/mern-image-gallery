@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { FavoriteBorder, Favorite } from '@mui/icons-material'
-import { saveImage, deleteImage } from '../utils/operations'
 
 export default function Image(props) {
 
-    const [isFavorite, setIsFavorite] = useState(() => props.isAlreadyFavorited ? true : false)
+    const [isFavorite, setIsFavorite] = useState(false)
 
-    useEffect(() => {
-
-        // this needs to be refactored
-        // every image loaded has to go through a db transaction like this
-        isFavorite ? 
-            saveImage(props.userInfo.userId, props.userInfo.accessToken, props.image)
-        :   
-            deleteImage(props.userInfo.userId, props.userInfo.accessToken, props.image)
-
-    }, [isFavorite, props])
+    const toggleFavorite = () => {
+        setIsFavorite(prev => !prev)
+        // isFavorite doesn't change until the next render so I'm evaluating it backwards
+        !isFavorite ? 
+            props.setImgToSave(props.image)
+        :
+            props.setImgToDelete(props.image)
+    }
 
     return (
-        <div className="image-container" onClick={() => setIsFavorite(prev => !prev)}>
+        <div className="image-container" onClick={toggleFavorite}>
             <div className="favorites-container">
                 {isFavorite ? 
                     <Favorite style={{ color: "red", fontSize:45, margin:8 }}/> : 

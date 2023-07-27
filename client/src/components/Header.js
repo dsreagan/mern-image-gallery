@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Search } from '@mui/icons-material'
-import fetchImages from '../utils/fetchImages'
 
 export default function Header(props) {
 
@@ -12,20 +11,13 @@ export default function Header(props) {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            handleSearch(searchInput)
+            handleSearch()
         }
     }
 
-    const handleSearch = async () => {
-        const unsplashData = await fetchImages(searchInput)
-        const images = unsplashData.map(singleImage => {
-            return {
-                id: singleImage.cover_photo.id,
-                url: singleImage.cover_photo.urls.small
-            }
-        })
-        props.setImages(images)
-        props.setAreFavoriteImages(false)
+    const handleSearch = () => {
+        props.setSearch(searchInput)
+        props.setGetFavorites(false)
     }
 
     return (

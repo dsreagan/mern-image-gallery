@@ -4,7 +4,6 @@ import AccountCircle from './components/AccountCircle'
 import FavoritesSquare from './components/FavoritesSquare'
 import Images from './components/Images'
 import Modal from './components/Modal'
-import BodyText from './components/BodyText'
 
 export default function App() {
 
@@ -12,9 +11,9 @@ export default function App() {
     {userId: '', userName: '', accessToken: ''}
   )
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [images, setImages] = useState([])
+  const [search, setSearch] = useState('')
+  const [getFavorites, setGetFavorites] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [areFavoriteImages, setAreFavoriteImages] = useState(false)
 
   useEffect(() => {
 
@@ -38,30 +37,22 @@ export default function App() {
 
       {isLoggedIn && 
         <FavoritesSquare 
-          userInfo={userInfo}
-          setImages={setImages}    
-          setAreFavoriteImages={setAreFavoriteImages} 
+          setGetFavorites={setGetFavorites}
         />
       }
       
       <Header
-        setImages={setImages}
-        userInfo={userInfo}
-        setAreFavoriteImages={setAreFavoriteImages} 
+        setSearch={setSearch}
+        setGetFavorites={setGetFavorites}
       />
 
-      {images.length > 0 ?
-        <Images 
-          images={images}
-          userInfo={userInfo}
-          areFavoriteImages={areFavoriteImages}
-        />
-        :
-        <BodyText
-          userName={userInfo.userName.toString()}
-          isLoggedIn={isLoggedIn}
-        />
-      }
+      <Images 
+        userInfo={userInfo}
+        search={search}
+        setSearch={setSearch}
+        getFavorites={getFavorites} 
+        isLoggedIn={isLoggedIn}
+      />
 
       {modalIsOpen && 
         <Modal 
@@ -69,7 +60,6 @@ export default function App() {
           setUserInfo={setUserInfo}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
-          setImages={setImages}
         />
       }
       

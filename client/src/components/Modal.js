@@ -55,7 +55,6 @@ export default function Modal(props) {
         ) 
         props.setIsLoggedIn(false)
         props.setModalIsOpen(false)
-        props.setImages([])
     }
 
     const handleRegistration = (e) => {
