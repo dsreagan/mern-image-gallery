@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Image from '../components/Image'
 
 export default function Images (props) {
@@ -6,6 +7,8 @@ export default function Images (props) {
 
     // need to see if any of the searched for images have been liked and then set them as liked before displaying
 
+    const [imgToSave, setImgToSave] = useState('')
+    const [imgToDelete, setImgToDelete] = useState('')
     
 
     return (
